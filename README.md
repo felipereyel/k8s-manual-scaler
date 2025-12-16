@@ -28,7 +28,7 @@ metadata:
   namespace: default
 rules:
   - apiGroups: ["apps"]
-    resources: ["deployments"]
+    resources: ["deployments", "statefulsets"]
     verbs: ["get", "list", "update"]
 
 ---

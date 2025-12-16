@@ -7,16 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func home(svcs *services.Services, c *fiber.Ctx) error {
-	deployments, err := svcs.KubeClient.ListDeployments()
-	if err != nil {
-		return err
-	}
-
-	return sendPage(c, components.DeploymentListPage(deployments))
-}
-
-func details(svcs *services.Services, c *fiber.Ctx) error {
+func deploymentsDetails(svcs *services.Services, c *fiber.Ctx) error {
 	c.Set("HX-Refresh", "true")
 	namespace := c.Params("namespace")
 	name := c.Params("deployment")
@@ -29,7 +20,7 @@ func details(svcs *services.Services, c *fiber.Ctx) error {
 	return sendPage(c, components.DeploymentDetailsPage(d))
 }
 
-func toggle(svcs *services.Services, c *fiber.Ctx) error {
+func deploymentsToggle(svcs *services.Services, c *fiber.Ctx) error {
 	c.Set("HX-Refresh", "true")
 	namespace := c.Params("namespace")
 	name := c.Params("deployment")

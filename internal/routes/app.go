@@ -22,8 +22,12 @@ func GetApp(svcs *services.Services, cfg config.ServerConfigs) *fiber.App {
 	}
 
 	app.Get("/", bind(svcs, home))
-	app.Get("/_deployments/:namespace/:deployment", bind(svcs, details))
-	app.Post("/_deployments/:namespace/:deployment", bind(svcs, toggle))
+
+	app.Get("/_deployments/:namespace/:deployment", bind(svcs, deploymentsDetails))
+	app.Post("/_deployments/:namespace/:deployment", bind(svcs, deploymentsToggle))
+
+	app.Get("/_statefulsets/:namespace/:statefulset", bind(svcs, statefulsetsDetails))
+	app.Post("/_statefulsets/:namespace/:statefulset", bind(svcs, statefulsetsToggle))
 
 	app.Use("/_statics", staticsHandler)
 	app.Use("/_healthz", healthzHandler)
