@@ -1,11 +1,11 @@
 # scaler
 
-Manually scale up or down your deployments
+Manually scale up or down your deployments and statefulsets
 
 ## Requirements
 
 - access to kubeconfig (locally) or service account (in cluster)
-- deployments must have annotation `scaler.reyel.cloud/enabled: "true"`
+- deployments or statefulsets must have annotation `scaler.reyel.cloud/enabled: "true"`
 
 
 ## Usage
